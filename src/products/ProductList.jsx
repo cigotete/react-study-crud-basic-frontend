@@ -15,11 +15,6 @@ export const ProductList = () => {
     setProducts(respuesta.data);
   }
 
-  const handleDelete = (productId) => {
-    // Aquí harías una solicitud DELETE para eliminar el producto con el ID proporcionado.
-    // Después de la eliminación, actualiza la lista de productos en el estado.
-  };
-
   return (
     <div>
       <h1>Lista de Productos</h1>
