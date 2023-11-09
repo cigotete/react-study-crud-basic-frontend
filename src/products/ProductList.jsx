@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const ProductList = () => {
-  const url='http://backend-products-for-react-frontend.test';
+  const url= import.meta.env.VITE_CRUD_API_URL;
+  const crudApiKey = import.meta.env.VITE_CRUD_API_KEY;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -11,8 +12,17 @@ export const ProductList = () => {
   }, []);
 
   const getProducts = async () => {
-    const respuesta = await axios.get(url);
-    setProducts(respuesta.data);
+    try {
+      const respuesta = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${crudApiKey}`
+        }
+      });
+      setProducts(respuesta.data.items);
+    } catch (error) {
+      // Manejo de errores
+      console.error("Error al obtener productos:", error);
+    }
   }
 
   return (
@@ -36,17 +46,17 @@ export const ProductList = () => {
           </thead>
           <tbody className='table-group-divider'>
             {products.map( (product,i)=>(
-              <tr key={product.id}>
+              <tr key={product._uuid}>
                 <td>{(i+1)}</td>
                 <td>{product.name}</td>
                 <td>{product.description}</td>
                 <td>${new Intl.NumberFormat('es-co').format(product.price)}</td>
                 <td>
-                  <Link to={`/edit/${product.id}`}>
+                  <Link to={`/edit/${product._uuid}`}>
                     <button>Editar</button>
                   </Link>
                     &nbsp; 
-                    <Link to={`/delete/${product.id}`}>
+                    <Link to={`/delete/${product._uuid}`}>
                     <button>Borrar</button>
                   </Link>
                 </td>

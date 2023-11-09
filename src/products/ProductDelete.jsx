@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const ProductDelete = () => {
-  const url = 'http://backend-products-for-react-frontend.test';
+  const url= import.meta.env.VITE_CRUD_API_URL;
+  const crudApiKey = import.meta.env.VITE_CRUD_API_KEY;
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [message, setMessage] = useState({});
@@ -14,7 +15,16 @@ export const ProductDelete = () => {
 
   const getProduct = async () => {
     try {
-      const respuesta = await axios.get(`${url}?id=${id}`);
+      const respuesta = await axios.get(`${url}/${id}`, {
+        data:[
+          {
+          _uuid:id,
+          }
+        ],
+        headers: {
+          Authorization: `Bearer ${crudApiKey}`
+        }
+      });
       console.log('respuesta data:', respuesta.data);
       setProduct(respuesta.data);
     } catch (error) {
@@ -27,10 +37,19 @@ export const ProductDelete = () => {
       const respuesta = await axios({
         method: 'DELETE',
         url: url,
-        data:{id:id}
+        data:[
+          {
+            _uuid:id
+          }
+        ],
+        headers: {
+          'Authorization': `Bearer ${crudApiKey}`
+        }
       });
       console.log('respuesta delete:', respuesta.data);
-      setMessage(respuesta.data);
+      if (respuesta.data.items[0]) {
+        setMessage('200');
+      }
     } catch (error) {
       console.error('Error al eliminar el producto:', error);
     }
@@ -51,15 +70,13 @@ export const ProductDelete = () => {
         :
         <div>
           <ul>
-            {product.map( (product,i)=>(
-              <div key={ product.id }>
-              <li>ID: { product.id } </li>
-              <li>Nombre { product.name }</li>
-              <li>Descripción: { product.description }</li>
-              <li>Precio: ${ new Intl.NumberFormat('es-co').format(product.price) }</li>
-              </div>
-            ))
-            }
+
+            <div key={ product._uuid }>
+            <li>Nombre { product.name }</li>
+            <li>Descripción: { product.description }</li>
+            <li>Precio: ${ new Intl.NumberFormat('es-co').format(product.price) }</li>
+            </div>
+
           </ul>
           <button onClick={handleSubmit}>Eliminar</button>
         </div>

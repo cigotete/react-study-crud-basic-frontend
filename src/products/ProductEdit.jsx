@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const ProductEdit = () => {
-  const url = 'http://backend-products-for-react-frontend.test';
+  const url= import.meta.env.VITE_CRUD_API_URL;
+  const crudApiKey = import.meta.env.VITE_CRUD_API_KEY;
   const { id } = useParams();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -16,10 +17,14 @@ export const ProductEdit = () => {
 
   const getProduct = async () => {
     try {
-      const respuesta = await axios.get(`${url}?id=${id}`);
+      const respuesta = await axios.get(`${url}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${crudApiKey}`
+        }
+      });
       console.log('respuesta data:', respuesta.data);
-      if (respuesta.data.length > 0 && respuesta.data[0].id === id) {
-      const responseData = respuesta.data[0];
+      if (respuesta.data._uuid === id) {
+      const responseData = respuesta.data;
       setName(responseData.name);
       setDescription(responseData.description);
       setPrice(responseData.price);
@@ -34,15 +39,21 @@ export const ProductEdit = () => {
       const respuesta = await axios({
         method: 'PUT',
         url: url,
-        data:{
+        data:[{
           id:id,
           name:name.trim(),
           description: description.trim(),
-          price:price
+          price:price,
+          _uuid:id
+        }],
+        headers: {
+          'Authorization': `Bearer ${crudApiKey}`
         }
       });
-      console.log('respuesta edit:', respuesta.data);
-      setMessage(respuesta.data);
+      console.log('respuesta edit:', respuesta.data.items);
+      if (respuesta.data.items[0]._uuid == id) {
+        setMessage('200');
+      }
     } catch (error) {
       console.error('Error al editar el producto:', error);
     }

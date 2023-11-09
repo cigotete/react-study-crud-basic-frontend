@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const ProductCreate = () => {
-  const url = 'http://backend-products-for-react-frontend.test';
+  const url= import.meta.env.VITE_CRUD_API_URL;
+  const crudApiKey = import.meta.env.VITE_CRUD_API_KEY;
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -14,14 +15,19 @@ export const ProductCreate = () => {
       const respuesta = await axios({
         method: 'POST',
         url: url,
-        data:{
+        data:[{
           name:name.trim(),
           description: description.trim(),
-          price:price
+          price:price,
+        }],
+        headers: {
+          'Authorization': `Bearer ${crudApiKey}`
         }
       });
-      console.log('respuesta create:', respuesta.data);
-      setMessage(respuesta.data);
+      console.log('respuesta create:', respuesta.data.items);
+      if (respuesta.data.items[0]) {
+        setMessage('200');
+      }
     } catch (error) {
       console.error('Error al crear el producto:', error);
     }
