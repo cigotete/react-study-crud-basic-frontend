@@ -38,7 +38,7 @@ const columns = [
     render: (text, record) => (
       <span>
         <Link to={`/edit/${record._uuid}`}>
-          <Button>Edit</Button>
+          <Button type="primary">Edit</Button>
         </Link>
       </span>
     ),
@@ -49,7 +49,7 @@ const columns = [
     render: (text, record) => (
       <span>
         <Link to={`/delete/${record._uuid}`}>
-          <Button>Delete</Button>
+          <Button type="primary" danger>Delete</Button>
         </Link>
       </span>
     ),
