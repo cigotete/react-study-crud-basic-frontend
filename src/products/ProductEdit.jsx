@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Layout } from '../layout/layout';
+import { Layout } from '../layout/Layout';
 import { Typography, Button, Form, Input, Card, Space } from 'antd';
 
 const { Title } = Typography;

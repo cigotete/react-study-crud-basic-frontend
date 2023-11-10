@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Layout } from '../layout/layout';
+import { Layout } from '../layout/Layout';
 import { Typography, Table, Button, Space } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
