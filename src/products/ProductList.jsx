@@ -61,6 +61,9 @@ export const ProductList = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
   const crudApiKey = import.meta.env.VITE_CRUD_API_KEY;
   const [products, setProducts] = useState([]);
+  const pagination = {
+    pageSize: 5,
+  };
 
   useEffect(() => {
     getProducts();
@@ -90,6 +93,7 @@ export const ProductList = () => {
         </Link>
       <Table
         columns={columns}
+        pagination={pagination}
         dataSource={products.map((record) => ({ ...record, key: record._uuid }))}
       />
       </Space>
