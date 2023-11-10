@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
-import { Typography } from 'antd';
+import { Typography, Button, Form, Input } from 'antd';
 
 const { Title } = Typography;
 
@@ -51,28 +51,56 @@ export const ProductCreate = () => {
         </h2>
       :
       <div>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Descripción"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Precio"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <br />
-        <button onClick={handleSubmit}>Crear</button>
+        <Form
+        onFinish={handleSubmit}
+        >
+          <Form.Item
+            label="Nombre"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: 'Please input product name!',
+              },
+            ]}
+          >
+            <Input
+            onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Item>
+          <Form.Item
+            label="Descripción"
+            name="description"
+            rules={[
+              {
+                required: true,
+                message: 'Please input product description!',
+              },
+            ]}
+          >
+            <Input
+            onChange={(e) => setDescription(e.target.value)}
+            />
+          </Form.Item>
+          <Form.Item
+            label="Precio"
+            name="price"
+            rules={[
+              {
+                required: true,
+                message: 'Please input product price!',
+              },
+            ]}
+          >
+            <Input onChange={(e) => setPrice(e.target.value)}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
       </div>
       }
     </div>
