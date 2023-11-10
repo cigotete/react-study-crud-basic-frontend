@@ -85,7 +85,7 @@ export const ProductList = () => {
       <Title level={2}>Lista de Productos</Title>
       <Space direction="vertical" size="small">
         <Link to={`/create`}>
-          <Button>Añadir</Button>
+          <Button>Crear producto</Button>
         </Link>
       <Table
         columns={columns}
