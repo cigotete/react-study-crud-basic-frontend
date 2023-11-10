@@ -34,6 +34,7 @@ const columns = [
       </span>
     ),
     sorter: (a, b) => a.price - b.price,
+    align: 'right',
   },
   {
     title: 'Edit',
