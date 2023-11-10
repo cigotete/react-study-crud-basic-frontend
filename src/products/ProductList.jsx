@@ -17,6 +17,7 @@ const columns = [
     title: 'Product',
     dataIndex: 'name',
     key: '_uuid',
+    sorter: (a, b) => a.name.localeCompare(b.name),
   },
   {
     title: 'Description',
@@ -32,6 +33,7 @@ const columns = [
         ${new Intl.NumberFormat('es-co').format(record.price)}
       </span>
     ),
+    sorter: (a, b) => a.price - b.price,
   },
   {
     title: 'Edit',
