@@ -13,7 +13,7 @@ export const Layout = ({ children }) => {
 
       <Content style={{ margin: '16px' }}>{children}</Content>
 
-      <Footer><Text>&copy; 2023 Footer</Text></Footer>
+      <Footer><Text>&copy; 2023 text footer here</Text></Footer>
     </AntLayout>
   );
 };
