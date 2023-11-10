@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
+import {Layout as AntLayout, Typography } from 'antd';
+
+const { Header, Content, Footer } = AntLayout;
+const { Title, Text } = Typography;
 
 export const Layout = ({ children }) => {
   return (
-    <div>
-      <header>
-        <h1>Product CRUD</h1>
-      </header>
+    <AntLayout className="layout">
+      <Header style={{ display: 'flex', alignItems: 'center' }}>
+        <Title type='secondary'>Product CRUD</Title>
+      </Header>
 
-      <main>{children}</main>
+      <Content>{children}</Content>
 
-      <footer>&copy; 2023 Footer</footer>
-    </div>
+      <Footer><Text>&copy; 2023 Footer</Text></Footer>
+    </AntLayout>
   );
 };
 
