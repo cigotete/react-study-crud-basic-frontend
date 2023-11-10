@@ -87,7 +87,11 @@ export const ProductList = () => {
   return (
     <Layout>
       <Title level={2}>Lista de Productos</Title>
-      <Space direction="vertical" size="small">
+      <Space
+        direction="vertical"
+        size="small"
+        style={{ width: '100%' }}
+        >
         <Link to={`/create`}>
           <Button>Crear producto</Button>
         </Link>
