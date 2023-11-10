@@ -11,7 +11,7 @@ export const Layout = ({ children }) => {
         <Title type='secondary'>Product CRUD</Title>
       </Header> */}
 
-      <Content>{children}</Content>
+      <Content style={{ margin: '16px' }}>{children}</Content>
 
       <Footer><Text>&copy; 2023 Footer</Text></Footer>
     </AntLayout>
