@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 export const Layout = ({ children }) => {
   return (
@@ -11,4 +12,8 @@ export const Layout = ({ children }) => {
       <footer>&copy; 2023 Footer</footer>
     </div>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
