@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
 import { Typography, Table, Button, Space } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 const columns = [
@@ -38,7 +39,7 @@ const columns = [
     render: (text, record) => (
       <span>
         <Link to={`/edit/${record._uuid}`}>
-          <Button type="primary">Edit</Button>
+          <Button><EditOutlined /></Button>
         </Link>
       </span>
     ),
@@ -49,7 +50,7 @@ const columns = [
     render: (text, record) => (
       <span>
         <Link to={`/delete/${record._uuid}`}>
-          <Button type="primary" danger>Delete</Button>
+          <Button danger><DeleteOutlined /></Button>
         </Link>
       </span>
     ),
