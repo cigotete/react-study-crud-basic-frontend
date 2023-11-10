@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Layout } from '../layout/layout';
 
 export const ProductCreate = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -34,6 +35,7 @@ export const ProductCreate = () => {
   };
 
   return (
+    <Layout>
     <div>
       <h1>Crear Producto</h1>
       {message.length > 0 ?
@@ -71,5 +73,6 @@ export const ProductCreate = () => {
       </div>
       }
     </div>
+    </Layout>
   );
 }

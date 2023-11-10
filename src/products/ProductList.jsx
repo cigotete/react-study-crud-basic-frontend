@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Layout } from '../layout/layout';
 
 export const ProductList = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -26,6 +27,7 @@ export const ProductList = () => {
   }
 
   return (
+    <Layout>
     <div>
       <h1>Lista de Productos</h1>
       <div>
@@ -67,5 +69,6 @@ export const ProductList = () => {
         </table>
     </div>
     </div>
+    </Layout>
   );
 }
