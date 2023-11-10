@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 export const ProductList = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -29,7 +32,7 @@ export const ProductList = () => {
   return (
     <Layout>
     <div>
-      <h1>Lista de Productos</h1>
+      <Title level={2}>Lista de Productos</Title>
       <div>
       <Link to={`/create`}>
           <button>Añadir</button>

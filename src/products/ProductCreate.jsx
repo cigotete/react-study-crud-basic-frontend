@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 export const ProductCreate = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -37,7 +40,7 @@ export const ProductCreate = () => {
   return (
     <Layout>
     <div>
-      <h1>Crear Producto</h1>
+    <Title level={2}>Crear Producto</Title>
       {message.length > 0 ?
         <h2>
           Producto creado.

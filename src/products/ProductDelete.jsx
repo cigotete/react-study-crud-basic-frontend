@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 export const ProductDelete = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -60,7 +63,7 @@ export const ProductDelete = () => {
     <>
     <Layout>
       <div>
-        <h1>Borrar Producto</h1>
+      <Title level={2}>Borrar Producto</Title>
         {message.length > 0 ?
         <h2>
           Producto eliminado.

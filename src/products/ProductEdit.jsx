@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 export const ProductEdit = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -63,7 +66,7 @@ export const ProductEdit = () => {
   return (
     <Layout>
     <div>
-      <h1>Editar Producto</h1>
+    <Title level={2}>Editar Producto</Title>
       {message.length > 0 ?
         <h2>
           Producto editado.
