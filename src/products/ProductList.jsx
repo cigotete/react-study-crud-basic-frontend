@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
-import { Typography, Table, Button } from 'antd';
+import { Typography, Table, Button, Space } from 'antd';
 
 const { Title } = Typography;
 const columns = [
@@ -83,15 +83,15 @@ export const ProductList = () => {
   return (
     <Layout>
       <Title level={2}>Lista de Productos</Title>
-      <div>
-      <Link to={`/create`}>
-          <button>Añadir</button>
+      <Space direction="vertical" size="small">
+        <Link to={`/create`}>
+          <Button>Añadir</Button>
         </Link>
-      </div>
       <Table
         columns={columns}
         dataSource={products.map((record) => ({ ...record, key: record._uuid }))}
       />
+      </Space>
     </Layout>
   );
 }
