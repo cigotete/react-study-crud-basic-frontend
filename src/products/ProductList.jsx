@@ -2,9 +2,59 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
-import { Typography } from 'antd';
+import { Typography, Table, Button } from 'antd';
 
 const { Title } = Typography;
+const columns = [
+  {
+    title: 'Id',
+    dataIndex: '_uuid',
+    key: '_uuid',
+    hidden: true,
+  },
+  {
+    title: 'Product',
+    dataIndex: 'name',
+    key: '_uuid',
+  },
+  {
+    title: 'Description',
+    dataIndex: 'description',
+    key: '_uuid',
+  },
+  {
+    title: 'Price',
+    dataIndex: 'price',
+    key: '_uuid',
+    render: (text, record) => (
+      <span>
+        ${new Intl.NumberFormat('es-co').format(record.price)}
+      </span>
+    ),
+  },
+  {
+    title: 'Edit',
+    key: '_uuid',
+    render: (text, record) => (
+      <span>
+        <Link to={`/edit/${record._uuid}`}>
+          <Button>Edit</Button>
+        </Link>
+      </span>
+    ),
+  },
+  {
+    title: 'Delete',
+    key: '_uuid',
+    render: (text, record) => (
+      <span>
+        <Link to={`/delete/${record._uuid}`}>
+          <Button>Delete</Button>
+        </Link>
+      </span>
+    ),
+  },
+].filter(item => !item.hidden);
 
 export const ProductList = () => {
   const url= import.meta.env.VITE_CRUD_API_URL;
@@ -23,6 +73,7 @@ export const ProductList = () => {
         }
       });
       setProducts(respuesta.data.items);
+      console.log('respuesta data:', respuesta.data.items);
     } catch (error) {
       // Manejo de errores
       console.error("Error al obtener productos:", error);
@@ -31,47 +82,16 @@ export const ProductList = () => {
 
   return (
     <Layout>
-    <div>
       <Title level={2}>Lista de Productos</Title>
       <div>
       <Link to={`/create`}>
           <button>Añadir</button>
         </Link>
       </div>
-      <div className='table-responsive'>
-        <table className='table table-bordered'>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>PRODUCTO</th>
-              <th>DESCRIPCION</th>
-              <th>PRECIO</th>
-              <th></th>
-              </tr>
-          </thead>
-          <tbody className='table-group-divider'>
-            {products.map( (product,i)=>(
-              <tr key={product._uuid}>
-                <td>{(i+1)}</td>
-                <td>{product.name}</td>
-                <td>{product.description}</td>
-                <td>${new Intl.NumberFormat('es-co').format(product.price)}</td>
-                <td>
-                  <Link to={`/edit/${product._uuid}`}>
-                    <button>Editar</button>
-                  </Link>
-                    &nbsp; 
-                    <Link to={`/delete/${product._uuid}`}>
-                    <button>Borrar</button>
-                  </Link>
-                </td>
-              </tr>
-            ))
-            }
-          </tbody>
-        </table>
-    </div>
-    </div>
+      <Table
+        columns={columns}
+        dataSource={products.map((record) => ({ ...record, key: record._uuid }))}
+      />
     </Layout>
   );
 }
