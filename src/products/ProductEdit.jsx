@@ -131,9 +131,14 @@ export const ProductEdit = () => {
           </Form.Item>
           </Card>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
+            <Space direction='horizontal'>
+              <Button type="primary" htmlType="submit">
+                Editar
+              </Button>
+              <Link to={`/`}>
+                Cancelar
+              </Link>
+            </Space>
           </Form.Item>
           </Space>
         </Form>

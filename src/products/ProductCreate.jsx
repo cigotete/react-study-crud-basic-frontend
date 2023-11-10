@@ -101,15 +101,21 @@ export const ProductCreate = () => {
           </Form.Item>
           </Card>
           <Form.Item>
+            <Space direction='horizontal'>
             <Button type="primary" htmlType="submit">
-              Submit
+              Crear
             </Button>
+            <Link to={`/`}>
+              Cancelar
+            </Link>
+            </Space>
           </Form.Item>
           </Space>
         </Form>
       </Card>
       }
     </div>
+
     </Layout>
   );
 }
