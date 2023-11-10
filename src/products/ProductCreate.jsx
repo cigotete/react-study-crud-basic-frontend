@@ -44,7 +44,7 @@ export const ProductCreate = () => {
       {message.length > 0 ?
         <Card title="Producto creado">
           <Link to={`/`}>
-            <Button>Regresar</Button>
+            <Button type='primary'>Regresar</Button>
           </Link>
         </Card>
       :

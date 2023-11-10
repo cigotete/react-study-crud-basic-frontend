@@ -75,7 +75,7 @@ export const ProductEdit = () => {
       {message.length > 0 ?
         <Card title="Producto editado">
           <Link to={`/`}>
-            <Button>Regresar</Button>
+            <Button type='primary'>Regresar</Button>
           </Link>
         </Card>
       :

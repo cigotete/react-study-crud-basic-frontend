@@ -67,7 +67,7 @@ export const ProductDelete = () => {
         {message.length > 0 ?
         <Card title="Producto eliminado">
           <Link to={`/`}>
-            <Button>Regresar</Button>
+            <Button type='primary'>Regresar</Button>
           </Link>
         </Card>
         :
@@ -79,7 +79,7 @@ export const ProductDelete = () => {
             <li>Precio: ${ new Intl.NumberFormat('es-co').format(product.price) }</li>
             </Card>
             <Space direction='horizontal'>
-            <Button onClick={handleSubmit} type="primary" htmlType="submit">
+            <Button onClick={handleSubmit} type="primary" danger htmlType="submit">
               Eliminar
             </Button>
             <Link to={`/`}>
