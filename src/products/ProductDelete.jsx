@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
-import { Typography } from 'antd';
+import { Typography, Card, Button, Space } from 'antd';
 
 const { Title } = Typography;
 
@@ -73,18 +73,16 @@ export const ProductDelete = () => {
           </Link>
         </h2>
         :
-        <div>
-          <ul>
-
-            <div key={ product._uuid }>
-            <li>Nombre { product.name }</li>
+        <Card title={product.name}>
+          <Space direction="vertical" size="small">
+            <Card key={ product._uuid }>
+            <li>Nombre: { product.name }</li>
             <li>Descripción: { product.description }</li>
             <li>Precio: ${ new Intl.NumberFormat('es-co').format(product.price) }</li>
-            </div>
-
-          </ul>
-          <button onClick={handleSubmit}>Eliminar</button>
-        </div>
+            </Card>
+          <Button onClick={handleSubmit}>Eliminar</Button>
+          </Space>
+        </Card>
       }
       </div>
       </Layout>
