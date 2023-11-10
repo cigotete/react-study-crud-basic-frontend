@@ -7,9 +7,9 @@ const { Title, Text } = Typography;
 export const Layout = ({ children }) => {
   return (
     <AntLayout className="layout">
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
+      {/* <Header style={{ display: 'flex', alignItems: 'center' }}>
         <Title type='secondary'>Product CRUD</Title>
-      </Header>
+      </Header> */}
 
       <Content>{children}</Content>
 
