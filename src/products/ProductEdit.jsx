@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../layout/layout';
-import { Typography, Button, Form, Input } from 'antd';
+import { Typography, Button, Form, Input, Card, Space } from 'antd';
 
 const { Title } = Typography;
 
@@ -73,19 +73,23 @@ export const ProductEdit = () => {
     <div>
     <Title level={2}>Editar Producto</Title>
       {message.length > 0 ?
-        <h2>
-          Producto editado.
-          <br />
+        <Card title="Producto editado">
           <Link to={`/`}>
-            <button>Regresar</button>
+            <Button>Regresar</Button>
           </Link>
-        </h2>
+        </Card>
       :
-      <div>
+      <Card>
         <Form
         form={form}
         onFinish={handleSubmit}
         >
+          <Space
+          direction="vertical"
+          size="small"
+          style={{ width: '100%' }}
+          >
+          <Card>
           <Form.Item
             label="Nombre"
             name="name"
@@ -125,13 +129,15 @@ export const ProductEdit = () => {
             <Input
             />
           </Form.Item>
+          </Card>
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
           </Form.Item>
+          </Space>
         </Form>
-      </div>
+      </Card>
       }
     </div>
     </Layout>

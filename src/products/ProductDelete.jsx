@@ -65,13 +65,11 @@ export const ProductDelete = () => {
       <div>
       <Title level={2}>Borrar Producto</Title>
         {message.length > 0 ?
-        <h2>
-          Producto eliminado.
-          <br />
+        <Card title="Producto eliminado">
           <Link to={`/`}>
-            <button>Regresar</button>
+            <Button>Regresar</Button>
           </Link>
-        </h2>
+        </Card>
         :
         <Card title={product.name}>
           <Space direction="vertical" size="small">
